@@ -1,19 +1,18 @@
 class School:
-	fellows_created = 0
+	
 	def __init__(self, eits=[], fellows=[]):
 		self.eits = eits
 		self.fellows = fellows
-		School.fellows_created += 1
+		
 
-	def add_fellow(self, fellow):
-			if fellows_created >= 4:
-				raise MemoryError("We can't afford to hire {}".format(self.names))
-			else:
-				self.fellows.append(fellow)
-				fellows_created += 1
+	# def add_fellow(self, fellow):
+			
+	# 		else:
+	# 			self.fellows.append(fellow)
+				
 
-	def add_eit(self, eit):
-		self.eits.append(eit)
+	# def add_eit(self, eit):
+	# 	self.eits.append(eit)
 		
 
 class Person:
@@ -32,9 +31,16 @@ class Eit(Person):
 
 
 class Fellow(Person):
-	def __init__(self, names, nationality, happiness_level):
+	fellows_created = 0
+	def __init__(self, names, nationality, happiness_level = 5):
+		Fellow.fellows_created += 1
+		if Fellow.fellows_created > 4:
+			raise Exception("We can't afford to hire {}".format(names))
+
 		super().__init__(names, nationality)
 		self.happiness_level = happiness_level
+
+
 		
 	def eat(self, food, happiness_level = 1):
 		self.happiness_level += happiness_level 
@@ -46,12 +52,12 @@ class Fellow(Person):
 
 
 if __name__ == "__main__":
-	Andrew = Fellow("Andrew", "USA", 5)
-	Pascal = Fellow("Pascal", "DRC", 5)
-	Francis = Fellow("Francis", "Ghana", 5)
-	Miishe = Fellow("Miishe", "GH/Murika", 5)
-	Simphiwe = Fellow("Simphiwe", "Africa del Sur", 5)
-	Edem = Fellow("Edem", "GH", 5)
+	Andrew = Fellow("Andrew", "USA")
+	Pascal = Fellow("Pascal", "DRC")
+	Francis = Fellow("Francis", "Ghana")
+	Miishe = Fellow("Miishe", "GH/Murika")
+	Simphiwe = Fellow("Simphiwe", "Africa del Sur")
+	Edem = Fellow("Edem", "GH")
 	
 	# Elohor = Eit("Elohor", "Nigerian")
 	# Simon = Eit("Simon", "Ghanian")
